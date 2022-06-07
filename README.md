@@ -118,4 +118,4 @@ La opción salir, debe salir del juego previa confirmación del usuario.
 Créditos
 Imágenes de cerdos obtenidas de Freepik creado por Vectormass Studio.
 Logo de cerdo obtenido de Flaticon por creado por Rlkas Dzihab
-Juego inventado por Angel Simón. Inspirado en el juego Pig.
+Juego inventado por Angel Simón. Inspirado en el juego Pig.-
