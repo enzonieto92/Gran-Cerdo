@@ -4,6 +4,7 @@
 #include <cstdlib> ///Contiene los prototipos de funciones de C para gestión de memoria dinámica, control de procesos y otras, utilizo srand y rand para los números aleatorios
 #include <ctime>///Biblioteca con la función time, la utilizo para crear un delay entre los dados lanzados y para inicializar la función de números aleatorios
 #include <cctype> ///Biblioteca que contiene la función toupper() que sirve para cambiar un caracter a mayúsculas
+#include <windows.h>
 #include <stdio.h>///Biblioteca que contiene la función NULL, la utilizo para generar números aleatorios
 using namespace std;
 #include "Funciones.h"//incluyo el archivo de cabecera "Funciones" para tener las funciones definidas por separado
@@ -16,8 +17,8 @@ int main(){
     //Función para generar un número aleatorio, lo uso para que los dados se tiren al azar//Se encuentra en la biblioteca de funciones "ctime" ( time ) y "cstdlib" ( srand y rand )
 srand (time(NULL));
     //Función para que el Programa acepte letras con símbolos (acentos, la letra Ñ, etc..)//Se encuentra en la biblioteca de funciones "locale.h"
-setlocale(LC_ALL, "spanish");
-
+SetConsoleCP(1252); // Cambiar STDIN -  Para máquinas Windows
+SetConsoleOutputCP(1252); // Cambiar STDOUT - Para máquinas Windows
       /////////////////////////VARIABLES//////////////////////////////
 
     //Declaro un Booleano que me va a decir que jugador empieza la partida
