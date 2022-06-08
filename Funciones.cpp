@@ -271,7 +271,6 @@ void comienzo_del_juego (char nombre1[], char nombre2[], bool& primer_jugador, i
                                             trufas_acumuladas += trufas_ronda;
                                             trufas_ronda = 0;
                                             bandera_turno = true;
-
                                             if (cont_lanzamientos > mejor_lanzamiento1){
                                                 mejor_lanzamiento1 = cont_lanzamientos;
                                             }
@@ -279,9 +278,9 @@ void comienzo_del_juego (char nombre1[], char nombre2[], bool& primer_jugador, i
                                             cont_lanzamientos = 0;
                                             cont_turnos ++;
                                             borrar_pantalla();
-                                            break;
                                         }
-                                }
+                                    }
+                        break;
                         case 1:
                                 cout <<"TURNO DE "<<nombre2<<"!"<<endl;
                                 cout <<"+-------------------------+"<<endl;
@@ -312,12 +311,11 @@ void comienzo_del_juego (char nombre1[], char nombre2[], bool& primer_jugador, i
                                             cont_lanzamientos = 0;
                                             cont_turnos ++;
                                             borrar_pantalla();
-                                            break;
                                         }
                                 }
 
+                        break;
                     }//switch corchete final
-
         }//DO corchete final
     while (rondas <6);
     }
