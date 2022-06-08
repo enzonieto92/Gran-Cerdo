@@ -259,7 +259,7 @@ void comienzo_del_juego (char nombre1[], char nombre2[], bool& primer_jugador, i
                                 cin >>respuesta;
                                respuesta = toupper(respuesta);
                                     if(respuesta == 'S'){
-                                        empezar_lanzamiento(trufas_acumuladas, trufas_acumuladas2, bandera_turno, trufas_ronda, cont_lanzamientos, cont_turnos);
+                                        empezar_lanzamiento(trufas_acumuladas, trufas_acumuladas2, bandera_turno, trufas_ronda, cont_lanzamientos, cont_lanzamientos2, cont_turnos);
                                         cont_lanzamientos ++;
                                         borrar_pantalla();
                                         break;
@@ -292,9 +292,9 @@ void comienzo_del_juego (char nombre1[], char nombre2[], bool& primer_jugador, i
                                 cout <<"LANZAMIENTO # "<<cont_lanzamientos2+1<<endl<<endl;
                                 cout <<"Tirar Dados?  S/N"<<endl;
                                 cin >>respuesta;
-                                toupper(respuesta);
+                               respuesta = toupper(respuesta);
                                     if (respuesta =='S'){
-                                        empezar_lanzamiento(trufas_acumuladas, trufas_acumuladas2, bandera_turno, trufas_ronda, cont_lanzamientos2, cont_turnos);
+                                        empezar_lanzamiento(trufas_acumuladas, trufas_acumuladas2, bandera_turno, trufas_ronda, cont_lanzamientos, cont_lanzamientos2, cont_turnos);
                                         cont_lanzamientos2 ++;
                                         borrar_pantalla();
                                 }
@@ -309,7 +309,7 @@ void comienzo_del_juego (char nombre1[], char nombre2[], bool& primer_jugador, i
                                             if (cont_lanzamientos2 > mejor_lanzamiento2){
                                                 mejor_lanzamiento2 = cont_lanzamientos + 1;
                                             }
-                                            cont_lanzamientos = 0;
+                                            cont_lanzamientos2 = 0;
                                             cont_turnos ++;
                                             borrar_pantalla();
                                         }
@@ -324,7 +324,7 @@ void comienzo_del_juego (char nombre1[], char nombre2[], bool& primer_jugador, i
 ///*////////////////////////////////////////////Función para tirar los dados  al comienzo de la primer ronda//////////////////////////////////////////////////
 //En ésta función hago un lanzamiento individual, que puede ser de 2 o 3 dados
 //dependiendo de las situaciones que se vayan dando en el juego
-void  empezar_lanzamiento(int& puntaje1, int& puntaje2, bool& jugador, int& trufas_ronda, int& cont_lanzamientos, int& cont_turnos){
+void  empezar_lanzamiento(int& puntaje1, int& puntaje2, bool& jugador, int& trufas_ronda, int& cont_lanzamientos, int&cont_lanzamientos2, int& cont_turnos){
 int i, z, suma;
 int cantidad_dados = 2;
 int dados_jugador[cantidad_dados];
@@ -348,7 +348,7 @@ if (puntaje1 >= 50 || puntaje2 >= 50){
             }
             else{
                 cantidad_dados = 3;
-                for (z = 0; i < 3; i ++){
+                for (z = 0; z < 3; i ++){
                 delay (1);
                 dados_jugador [i]  = dado();
                 }
@@ -393,7 +393,7 @@ if (puntaje1 >= 50 || puntaje2 >= 50){
                                     trufas_ronda += suma*2;
                                     cout <<"van "<<trufas_ronda<<" puntos"<<endl;
                                     pausa();
-                                    empezar_lanzamiento(puntaje1, puntaje2, jugador, trufas_ronda, cont_lanzamientos, cont_turnos);
+                                    empezar_lanzamiento(puntaje1, puntaje2, jugador, trufas_ronda, cont_lanzamientos, cont_lanzamientos2, cont_turnos);
                                 }
                                 else if (dados_jugador [0] != dados_jugador [1]){
 
@@ -415,7 +415,7 @@ if (puntaje1 >= 50 || puntaje2 >= 50){
                                     cont_lanzamientos = 0;
                                     break;
                                  }
-                                else if (dados_jugador [0] == 1 && dados_jugador [1] == 1 || dados_jugador [2] == 1){
+                                else if (dados_jugador [0] == 1 && (dados_jugador [1] == 1 || dados_jugador [2] == 1)){
 
                                     cout << "El cerdito se ha hundido en el barro! pierde todas las trufas de todas las rondas y cede su turno (T-T)"<<endl;
                                     pausa();
@@ -465,7 +465,7 @@ if (puntaje1 >= 50 || puntaje2 >= 50){
                                     trufas_ronda = 0;
                                     puntaje2 = 0;
                                     jugador = 0;
-                                    cont_lanzamientos = 0;
+                                    cont_lanzamientos2 = 0;
                                     bandera_3dados = true;
                                     break;
                                  }
@@ -475,7 +475,7 @@ if (puntaje1 >= 50 || puntaje2 >= 50){
                                     pausa();
                                     cont_turnos++;
                                     trufas_ronda = 0;
-                                    cont_lanzamientos = 0;
+                                    cont_lanzamientos2 = 0;
                                     jugador = 0;
                                     break;
 
@@ -484,7 +484,7 @@ if (puntaje1 >= 50 || puntaje2 >= 50){
                                     cout <<"hizo un OINK! duplica y tira nuevamente"<<endl;
                                     trufas_ronda += (suma*2);
                                     pausa();
-                                    empezar_lanzamiento(puntaje1, puntaje2, jugador, trufas_ronda, cont_lanzamientos, cont_turnos);
+                                    empezar_lanzamiento(puntaje1, puntaje2, jugador, trufas_ronda, cont_lanzamientos,cont_lanzamientos2, cont_turnos);
                                 }
                                 else if (dados_jugador [0] != dados_jugador [1]){
 
@@ -502,11 +502,11 @@ if (puntaje1 >= 50 || puntaje2 >= 50){
                                     pausa();
                                     cont_turnos++;
                                     jugador = 0;
-                                    cont_lanzamientos = 0;
+                                    cont_lanzamientos2 = 0;
                                     trufas_ronda = 0;
                                     break;
                                  }
-                                else if (dados_jugador [0] == 1 && dados_jugador [1] == 1 || dados_jugador [2] == 1){
+                                else if (dados_jugador [0] == 1 && (dados_jugador [1] == 1 || dados_jugador [2] == 1)){
 
                                     cout << "El cerdito se ha hundido en el barro! pierde todas  las trufas de todas las rondas y cede su turno (T-T)"<<endl;
                                     pausa();
@@ -514,7 +514,7 @@ if (puntaje1 >= 50 || puntaje2 >= 50){
                                     trufas_ronda = 0;
                                     puntaje2 = 0;
                                     jugador = 0;
-                                    cont_lanzamientos = 0;
+                                    cont_lanzamientos2 = 0;
                                     bandera_3dados = true;
                                     break;
 
@@ -529,7 +529,7 @@ if (puntaje1 >= 50 || puntaje2 >= 50){
                                    puntaje2 = 0;
                                    trufas_ronda = 0;
                                     jugador = 0;
-                                    cont_lanzamientos = 0;
+                                    cont_lanzamientos2 = 0;
                                     bandera_3dados = true;
                                     break;
                                  }
