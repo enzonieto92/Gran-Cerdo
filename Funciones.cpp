@@ -307,7 +307,7 @@ void comienzo_del_juego (char nombre1[], char nombre2[], bool& primer_jugador, i
                                             trufas_ronda = 0;
                                             bandera_turno = false;
                                             if (cont_lanzamientos2 > mejor_lanzamiento2){
-                                                mejor_lanzamiento2 = cont_lanzamientos + 1;
+                                                mejor_lanzamiento2 = cont_lanzamientos2;
                                             }
                                             cont_lanzamientos2 = 0;
                                             cont_turnos ++;
