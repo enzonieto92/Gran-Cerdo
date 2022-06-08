@@ -1,5 +1,4 @@
 #include <conio.h> ///Funciones básicas de entrada y salida de constola ( I/O)
-#include <locale.h> ///Biblioteca con propósitos de localización, la uso para configurar la entrada de caracteres y que admita acentos y la letra Ñ entre otros
 #include <iostream> ///Funciones básicas de entrada y salida (cin /// cout /// )
 #include <cstdlib> ///Contiene los prototipos de funciones de C para gestión de memoria dinámica, control de procesos y otras, utilizo srand y rand para los números aleatorios
 #include <ctime>///Biblioteca con la función time, la utilizo para crear un delay entre los dados lanzados y para inicializar la función de números aleatorios
