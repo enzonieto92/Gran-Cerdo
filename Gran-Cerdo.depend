@@ -1,7 +1,7 @@
 # depslib dependency file v1.0
-1654740532 source:c:\users\enzon\documents\utn\laboratorio 1\gran-cerdo\main.cpp
-	<conio.h>
+1654750448 source:c:\users\enzon\documents\utn\laboratorio 1\gran-cerdo\main.cpp
 	<iostream>
+	<conio.h>
 	<cstdlib>
 	<ctime>
 	<cctype>
@@ -9,9 +9,9 @@
 	<stdio.h>
 	"Funciones.h"
 
-1654740657 c:\users\enzon\documents\utn\laboratorio 1\gran-cerdo\funciones.h
+1654745543 c:\users\enzon\documents\utn\laboratorio 1\gran-cerdo\funciones.h
 
-1654738699 source:c:\users\enzon\documents\utn\laboratorio 1\gran-cerdo\funciones.cpp
+1654746779 source:c:\users\enzon\documents\utn\laboratorio 1\gran-cerdo\funciones.cpp
 	<conio.h>
 	<iostream>
 	<cstdlib>

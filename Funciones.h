@@ -14,7 +14,7 @@ int dado();
 void delay(int);
 void pregunta (char[], char[], bool&);
 void comienzo_del_juego(char[], char[], bool&, int&, int&, int&, int&, int&, int&);
-void empezar_lanzamiento(int&, int&, bool&, int&, int&, int&, int&, int&, int&);
+void empezar_lanzamiento(int&, int&, bool&, bool&, int&, int&, int&, int&, int&, int&);
 void pantalla_puntaje (char[], char[], int, int, int, int, int, int);
 
 #endif // FUNCIONES_H_INCLUDED
