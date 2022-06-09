@@ -18,17 +18,15 @@ srand (time(NULL));
     //Función para que el Programa acepte letras con símbolos (acentos, la letra Ñ, etc..)//Se encuentra en la biblioteca de funciones "locale.h"
 SetConsoleCP(1252); // Cambiar STDIN -  Para máquinas Windows
 SetConsoleOutputCP(1252); // Cambiar STDOUT - Para máquinas Windows
-      /////////////////////////VARIABLES//////////////////////////////
+      /////////////////////////VARIABLES LOCALES//////////////////////////////
 
-    //Declaro un Booleano que me va a decir que jugador empieza la partida
-    //Declaro 2 vectores de tipo CHAR con 10 espacios para poner los nombres
-   //Declaro 2  variables de tipo entero para acumular los puntajes de los jugadores y las inicializo en cero
 
 int seleccion;
 bool primer_jugador;
 char nombre1[10] = "pepe";
 char nombre2 [10] = "pepa";
 int trufas_acumuladas = 0, trufas_acumuladas2 = 0, mejor_lanzamiento1 = 0, mejor_lanzamiento2 = 0;
+int oinks1 = 0, oinks2 = 0;
     do {
             borrar_pantalla();
             cout <<"GRAN CERDO"<<endl<<"---------------------"<<endl<<"1 - JUGAR"<<endl;
@@ -45,8 +43,8 @@ case 1:     pedir_nombre (nombre1);
             pedir_nombre2(nombre2);
             borrar_pantalla();
             pregunta(nombre1, nombre2, primer_jugador);
-            comienzo_del_juego(nombre1, nombre2, primer_jugador, trufas_acumuladas, trufas_acumuladas2, mejor_lanzamiento1, mejor_lanzamiento2);
-
+            comienzo_del_juego(nombre1, nombre2, primer_jugador, trufas_acumuladas, trufas_acumuladas2, mejor_lanzamiento1, mejor_lanzamiento2, oinks1, oinks2);
+            pantalla_puntaje(nombre1, nombre2, trufas_acumuladas, trufas_acumuladas2, mejor_lanzamiento1, mejor_lanzamiento2, oinks1, oinks2);
             break;
 
 //Mostrar estadísticas, en éste menú voy a mostrar  una lista de los jugadores que ganaron y ordenados por cantidad de puntos de victoria,

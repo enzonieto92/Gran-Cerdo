@@ -189,36 +189,34 @@ case 2:
                 //la condición " z!=y " hace referencia a que las posiciones en las que voy a buscar son distintas a la dirección donde se encuentra el puntaje máximo
                 for (z = 0;z<4  &&  z!=y; z++){
                     //Pregunto si el dado más grande está repetido en el vector
-                    if (punt_j1_j2 [y] == punt_j1_j2[z]){
-                    /// Si hay un dado repetido (y es el máximo junto a otro dado mas) pueden pasar 2 cosas:
-                    ///Los dados son iguales de a pares (porque tienen el mismo puntaje)
-                    ///Todos los dados son iguales entre sí
-                    ///en cualquiera de los 2 casos es empate, es decir
-                    cout <<endl<<"Empataron todos los dados! Tiran ambos devuelta"<<endl<<endl;
-                    pausa();
-                    bandera_turno = 0;
-                    break;
-                    }
+                        if (punt_j1_j2 [y] == punt_j1_j2[z]){
+                        /// Si hay un dado repetido (y es el máximo junto a otro dado mas) pueden pasar 2 cosas:
+                        ///Los dados son iguales de a pares (porque tienen el mismo puntaje)
+                        ///Todos los dados son iguales entre sí
+                        ///en cualquiera de los 2 casos es empate, es decir
+                        cout <<endl<<"Empataron todos los dados! Tiran ambos devuelta"<<endl<<endl;
+                        pausa();
+                        bandera_turno = 0;
+                        break;
+                        }
+                                            //Si el dado mas grande no está repetido, este IF pregunta la posición del dado más grande y cambia el valor de la variable local "primer_jugador" dependiendo de quién lo tenga;
+                                            //(La variable primer_jugador va a definir quién empieza el juego)
+
+
                 }
+                        if (y == 1 ||  y == 0){
+                                    cout <<endl<<"Empataron! pero "<<nombre1<<" sacó el dado mas alto!"<<endl<<endl;
+                                    cout <<"Será el primero en jugar..."<<endl;
+                                    primer_jugador = 0;
+                                    break;
+                        }
+                        else if (y == 2 || y == 3){
+                                    cout<<endl<< "Empataron! pero "<<nombre2<< " sacó el dado mas alto!"<<endl<<endl;
+                                    cout <<"Será el primero en jugar..."<<endl;
+                                    primer_jugador = 1;
+                                    break;
+                        }
         }
-        else{
-//Si el dado mas grande no está repetido, este IF pregunta la posición del dado más grande y cambia el valor de la variable local "primer_jugador" dependiendo de quién lo tenga;
-//(La variable primer_jugador va a definir quién empieza el juego)
-        if (y == 1 ||  y == 0){
-            cout <<endl<<"Empataron! pero "<<nombre1<<" sacó el dado mas alto!"<<endl<<endl;
-            cout <<"Será el primero en jugar..."<<endl;
-            primer_jugador = 0;
-            break;
-        }
-        else if (y == 2 || y == 3){
-            cout<<endl<< "Empataron! pero "<<nombre2<< " sacó el dado mas alto!"<<endl<<endl;
-            cout <<"Será el primero en jugar..."<<endl;
-            primer_jugador = 1;
-            break;
-
-        }
-
-            }
 
 
                 }//final switch bandera
@@ -228,7 +226,7 @@ while (bandera_turno != 3);
 
 
 //Función para cambiar el menú una vez que se defina el primero en lanzar los dados
-void comienzo_del_juego (char nombre1[], char nombre2[], bool& primer_jugador, int& trufas_acumuladas, int& trufas_acumuladas2, int & mejor_lanzamiento1, int& mejor_lanzamiento2){
+void comienzo_del_juego (char nombre1[], char nombre2[], bool& primer_jugador, int& trufas_acumuladas, int& trufas_acumuladas2, int & mejor_lanzamiento1, int& mejor_lanzamiento2, int& oinks1, int& oinks2){
             char respuesta = 'S';
             bool bandera_turno = primer_jugador;
             int rondas = 1;
@@ -237,9 +235,7 @@ void comienzo_del_juego (char nombre1[], char nombre2[], bool& primer_jugador, i
             int cont_lanzamientos =0, cont_lanzamientos2 = 0;
     do{
             borrar_pantalla();
-            if (cont_turnos/2 == rondas){
-                            rondas ++;
-                        }
+
             cout <<"GRAN CERDO"<<endl;
             cout<<"------------------------------------------------------------------------"<<endl;
             cout <<nombre1<<": "<<trufas_acumuladas<<" trufas acumuladas"<<"     "<<nombre2<<": "<<trufas_acumuladas2<<" trufas acumuladas"<<endl<<endl<<endl;
@@ -259,8 +255,7 @@ void comienzo_del_juego (char nombre1[], char nombre2[], bool& primer_jugador, i
                                 cin >>respuesta;
                                respuesta = toupper(respuesta);
                                     if(respuesta == 'S'){
-                                        empezar_lanzamiento(trufas_acumuladas, trufas_acumuladas2, bandera_turno, trufas_ronda, cont_lanzamientos, cont_lanzamientos2, cont_turnos);
-                                        cont_lanzamientos ++;
+                                        empezar_lanzamiento(trufas_acumuladas, trufas_acumuladas2, bandera_turno, trufas_ronda, cont_lanzamientos, cont_lanzamientos2, cont_turnos, oinks1, oinks2);
                                         borrar_pantalla();
                                         break;
                                 }
@@ -273,7 +268,7 @@ void comienzo_del_juego (char nombre1[], char nombre2[], bool& primer_jugador, i
                                             trufas_ronda = 0;
                                             bandera_turno = true;
                                             if (cont_lanzamientos > mejor_lanzamiento1){
-                                                mejor_lanzamiento1 = cont_lanzamientos + 1;
+                                                mejor_lanzamiento1 = cont_lanzamientos ;
                                             }
 
                                             cont_lanzamientos = 0;
@@ -294,8 +289,7 @@ void comienzo_del_juego (char nombre1[], char nombre2[], bool& primer_jugador, i
                                 cin >>respuesta;
                                respuesta = toupper(respuesta);
                                     if (respuesta =='S'){
-                                        empezar_lanzamiento(trufas_acumuladas, trufas_acumuladas2, bandera_turno, trufas_ronda, cont_lanzamientos, cont_lanzamientos2, cont_turnos);
-                                        cont_lanzamientos2 ++;
+                                        empezar_lanzamiento(trufas_acumuladas, trufas_acumuladas2, bandera_turno, trufas_ronda, cont_lanzamientos, cont_lanzamientos2, cont_turnos, oinks1, oinks2);
                                         borrar_pantalla();
                                 }
                                     else if (respuesta == 'N'){
@@ -317,14 +311,16 @@ void comienzo_del_juego (char nombre1[], char nombre2[], bool& primer_jugador, i
 
                         break;
                     }//switch corchete final
+             if (cont_turnos/2 == rondas){
+                            rondas ++;
+            }
         }//DO corchete final
     while (rondas <6);
     }
-
 ///*////////////////////////////////////////////Función para tirar los dados  al comienzo de la primer ronda//////////////////////////////////////////////////
 //En ésta función hago un lanzamiento individual, que puede ser de 2 o 3 dados
 //dependiendo de las situaciones que se vayan dando en el juego
-void  empezar_lanzamiento(int& puntaje1, int& puntaje2, bool& jugador, int& trufas_ronda, int& cont_lanzamientos, int&cont_lanzamientos2, int& cont_turnos){
+void  empezar_lanzamiento(int& puntaje1, int& puntaje2, bool& jugador, int& trufas_ronda, int& cont_lanzamientos, int&cont_lanzamientos2, int& cont_turnos, int& oinks1, int& oinks2){
 int i, z, suma;
 int cantidad_dados = 2;
 int dados_jugador[cantidad_dados];
@@ -348,9 +344,9 @@ if (puntaje1 >= 50 || puntaje2 >= 50){
             }
             else{
                 cantidad_dados = 3;
-                for (z = 0; z < 3; i ++){
+                for (z = 0; z < 3; z ++){
                 delay (1);
-                dados_jugador [i]  = dado();
+                dados_jugador [z]  = dado();
                 }
                 suma = dados_jugador [0] + dados_jugador [1] + dados_jugador [2];
             }
@@ -381,24 +377,26 @@ if (puntaje1 >= 50 || puntaje2 >= 50){
 
                                     cout << "Ha salido un AS! Pierde todas las trufas de la ronda actual y cede su turno =C"<<endl;
                                     pausa();
+                                    cont_lanzamientos = 0;
                                     cont_turnos ++;
                                     trufas_ronda = 0;
                                     jugador = 1;
-                                    cont_lanzamientos = 0;
                                     break;
 
                                  }
                                 else if (dados_jugador [0] == dados_jugador [1]){
                                     cout <<"hiciste un OINK! duplica y tira nuevamente"<<endl;
                                     trufas_ronda += suma*2;
-                                    cout <<"van "<<trufas_ronda<<" puntos"<<endl;
+                                    cont_lanzamientos ++;
+                                    oinks1 ++;
                                     pausa();
-                                    empezar_lanzamiento(puntaje1, puntaje2, jugador, trufas_ronda, cont_lanzamientos, cont_lanzamientos2, cont_turnos);
+                                    empezar_lanzamiento(puntaje1, puntaje2, jugador, trufas_ronda, cont_lanzamientos, cont_lanzamientos2, cont_turnos, oinks1, oinks2);
                                 }
                                 else if (dados_jugador [0] != dados_jugador [1]){
 
                                     cout << "Hiciste "<<suma<< " trufas!"<<endl;
                                     trufas_ronda += suma;
+                                    cont_lanzamientos++;
                                     pausa();
                                     break;
                                 }
@@ -441,11 +439,21 @@ if (puntaje1 >= 50 || puntaje2 >= 50){
                                     bandera_3dados = true;
                                     break;
                                  }
-                                else if (dados_jugador [0] != (dados_jugador [2] || dados_jugador [3])){
+                                else if (dados_jugador [0] != (dados_jugador [1] || dados_jugador [2])){
                                     cout << "Hiciste "<<suma<< "trufas!"<<endl;
+                                    cont_lanzamientos++;
                                     pausa();
                                     trufas_ronda += suma;
                                     break;
+                                }
+                                else if (dados_jugador [0] == dados_jugador [1] && dados_jugador [0] == dados_jugador [2]){
+                                    cout <<"Hiciste un OINK! Duplica los dados y lanza nuevamente!"<<endl;
+                                    trufas_ronda += suma*2;
+                                    cont_lanzamientos ++;
+                                    oinks1++;
+                                    pausa();
+                                    empezar_lanzamiento(puntaje1, puntaje2, jugador, trufas_ronda, cont_lanzamientos, cont_lanzamientos2, cont_turnos, oinks1, oinks2);
+
                                 }
                                 break;
                         }
@@ -461,12 +469,12 @@ if (puntaje1 >= 50 || puntaje2 >= 50){
 
                                     cout << "El cerdito se ha hundido en el barro! pierde todas  las trufas de todas las rondas y cede su turno (T-T)"<<endl;
                                     pausa();
+                                    bandera_3dados = true;
                                     cont_turnos ++;
                                     trufas_ronda = 0;
                                     puntaje2 = 0;
                                     jugador = 0;
                                     cont_lanzamientos2 = 0;
-                                    bandera_3dados = true;
                                     break;
                                  }
                                 else if (dados_jugador [0] == 1 || dados_jugador [1] == 1){
@@ -483,12 +491,15 @@ if (puntaje1 >= 50 || puntaje2 >= 50){
                                 else if (dados_jugador [0] == dados_jugador [1]){
                                     cout <<"hizo un OINK! duplica y tira nuevamente"<<endl;
                                     trufas_ronda += (suma*2);
+                                    cont_lanzamientos2++;
+                                    oinks2++;
                                     pausa();
-                                    empezar_lanzamiento(puntaje1, puntaje2, jugador, trufas_ronda, cont_lanzamientos,cont_lanzamientos2, cont_turnos);
+                                    empezar_lanzamiento(puntaje1, puntaje2, jugador, trufas_ronda, cont_lanzamientos,cont_lanzamientos2, cont_turnos, oinks1, oinks2);
                                 }
                                 else if (dados_jugador [0] != dados_jugador [1]){
 
                                     cout <<endl<< "Hiciste "<<suma<< " trufas!"<<endl;
+                                    cont_lanzamientos2++;
                                     trufas_ronda += suma;
                                     pausa();
                                     break;
@@ -536,8 +547,18 @@ if (puntaje1 >= 50 || puntaje2 >= 50){
                                 else if (dados_jugador [0] != (dados_jugador [2] || dados_jugador [3])){
                                     cout << "Hiciste "<<suma<< "trufas!"<<endl;
                                     trufas_ronda += suma;
+                                    cont_lanzamientos2++;
                                     pausa();
                                     break;
+                                }
+                                else if (dados_jugador [0] == dados_jugador [1] && dados_jugador [0] == dados_jugador [2]){
+                                    cout <<"Hiciste un OINK! Duplica los dados y lanza nuevamente!"<<endl;
+                                    trufas_ronda += suma*2;
+                                    cont_lanzamientos2 ++;
+                                    oinks2++;
+                                    pausa();
+                                    empezar_lanzamiento(puntaje1, puntaje2, jugador, trufas_ronda, cont_lanzamientos, cont_lanzamientos2, cont_turnos, oinks1, oinks2);
+
                                 }
                                 break;
 
@@ -547,3 +568,20 @@ if (puntaje1 >= 50 || puntaje2 >= 50){
                 }   //switch jugador
 
 }//Fin de la función
+
+
+
+/////////////////////////////////////////////    PANTALLA DE PUNTAJE FINAL      //////////////////////////////////////////////
+void pantalla_puntaje (char nombre1[], char nombre2[], int trufas_acumuladas, int trufas_acumuladas2, int mejor_lanzamiento1, int mejor_lanzamiento2, int oinks1, int oinks2){
+
+
+cout <<"GRAN CERDO "<<endl;
+cout <<"------------------------------------------------------------------------"<<endl;
+cout << "HITO                   "<<nombre1<<"         "<<nombre2<<endl;
+
+
+
+pausa();
+
+
+}
