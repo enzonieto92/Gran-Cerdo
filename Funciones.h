@@ -4,17 +4,19 @@
 
 ////////////////////////////////////////////////////////////////FUNCIONES DECLARADAS////////////////////////////////////////////////////////////////////////////
 
-void pedir_nombre (char nombre1[]);
-void pedir_nombre2 (char nombre2[]);
+
 void borrar_pantalla ();
-void estadisticas ();
+void estadisticas (char[], int&);
 void cerditos ();
 void pausa();
+void posicion(int, int);
 int dado();
 void delay(int);
+void pedir_nombres (char[], char[]);
 void pregunta (char[], char[], bool&);
 void comienzo_del_juego(char[], char[], bool&, int&, int&, int&, int&, int&, int&);
 void empezar_lanzamiento(int&, int&, bool&, bool&, int&, int&, int&, int&, int&, int&);
-void pantalla_puntaje (char[], char[], int, int, int, int, int, int);
-
+void pantalla_puntaje (char[], char[], int&, int&, int&, int&, int&, int&, int&, int&, int []);
+void guardar_ganador (char[], int&, int[], char[], char[]);
+string aMayuscula(string);
 #endif // FUNCIONES_H_INCLUDED
