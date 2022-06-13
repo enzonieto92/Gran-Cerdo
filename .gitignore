@@ -1,3 +1,6 @@
-*.DEPEND
-*.LAYOUT
+*.depend
+*.layout
+*.cscope_file_list
+README
+
 *.save-failed
