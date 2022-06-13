@@ -1,2 +1,3 @@
-
+*.DEPEND
+*.LAYOUT
 *.save-failed
