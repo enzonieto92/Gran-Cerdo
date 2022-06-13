@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1655137041 source:c:\users\enzon\documents\utn\laboratorio 1\gran-cerdo\main.cpp
+1655146169 source:c:\users\enzon\documents\utn\laboratorio 1\gran-cerdo\main.cpp
 	<iostream>
 	<conio.h>
 	<cstdlib>
@@ -13,7 +13,7 @@
 
 1655101350 c:\users\enzon\documents\utn\laboratorio 1\gran-cerdo\funciones.h
 
-1655139054 source:c:\users\enzon\documents\utn\laboratorio 1\gran-cerdo\funciones.cpp
+1655149185 source:c:\users\enzon\documents\utn\laboratorio 1\gran-cerdo\funciones.cpp
 	<conio.h>
 	<iostream>
 	<cstdlib>

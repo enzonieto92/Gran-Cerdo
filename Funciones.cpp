@@ -16,6 +16,12 @@ using namespace std;
 // Menú de Estadísticas
 void estadisticas (char n_puntajemax[], int& puntajemax){
     borrar_pantalla();
+    if (puntajemax == 0){
+        rlutil::locate (30, 6);
+        cout <<"todavía no se jugó ninguna partida!";
+        rlutil::getkey();
+    }
+    else{
     rlutil::locate (30, 6);
     cout <<"el ganador con mas puntos de victoria es: ";
     rlutil::locate (49, 8);
@@ -23,18 +29,25 @@ void estadisticas (char n_puntajemax[], int& puntajemax){
     rlutil::locate (38, 10);
     cout <<"con un total de "<<puntajemax<<" puntos!";
     rlutil::getkey();
+    }
 }
 
 //Menú de Créditos
 void cerditos (){
     borrar_pantalla();
-    cout <<"Los Cerditos creadores de éste juego son: " <<endl<<endl;
-    cout <<"Enzo Matías Nieto"<<endl<<endl;
-    cout <<"Claudia Fiszman"<<endl<<endl;
-    cout <<"Ludmila Boffo"<<endl<<endl;
-    cout <<"Pablo Barros"<<endl<<endl;
-    cout <<"Juan Pablo Benitez"<<endl<<endl;
-    system ("pause");
+    rlutil::locate ( 30, 3);
+    cout <<"Los Cerditos creadores de éste juego son: ";
+    rlutil::locate ( 40, 5);
+    cout <<"Enzo Matías Nieto";
+    rlutil::locate ( 40, 7);
+    cout <<"Claudia Fiszman";
+    rlutil::locate ( 40, 9);
+    cout <<"Ludmila Boffo";
+    rlutil::locate ( 40, 11);
+    cout <<"Pablo Barros";
+    rlutil::locate ( 40, 13);
+    cout <<"Juan Pablo Benitez";
+    rlutil::getkey();
 }
 
 
@@ -154,7 +167,8 @@ void borrar_dados(){
     cout <<"                              ";
     rlutil::locate(33, 19);
     cout <<"                              ";
-
+    rlutil::locate(22, 21);
+    cout <<"                                             ";
 }
 
 //Funciones para guardar nombres antes de comenzar el juego
@@ -168,9 +182,23 @@ void pedir_nombres (char nombre1[], char nombre2[]){
     rlutil::locate (60, 5);
     cout <<"Jugador N°2: ";
     rlutil::locate (33, 7);
-    cin >>nombre1;
+    cin.getline (nombre1, '\n');
+
     rlutil::locate (63, 7);
-    cin >>nombre2;
+    cin.getline (nombre2, '\n');
+
+    if (nombre1 [0] == '\0'){
+        rlutil::locate (30, 9);
+        cout <<"no has puesto el nombre del jugador N°1!";
+        rlutil::getkey();
+        pedir_nombres(nombre1, nombre2);
+    }
+    else if(nombre2 [0] == '\0' ){
+        rlutil::locate (30, 9);
+        cout <<"no has puesto el nombre del jugador N°2!";
+        rlutil::getkey();
+        pedir_nombres(nombre1, nombre2);
+    }
 
 
 }
@@ -192,9 +220,11 @@ case 0:
         rlutil::locate (35, 6);
         cout <<"Es el turno de "<<nombre1<<"!";
         rlutil::locate (35, 7);
-        cout <<"Tirar Dados? S/N? ";
+        cout <<"Tirar Dados? (S/N): ";
         rlutil::locate (42, 9);
         cin >>respuesta;
+        rlutil::locate (42, 9);
+        cout <<"  ";
         rlutil::hidecursor();
         respuesta = toupper(respuesta);
         if (respuesta == 'S'){
@@ -220,9 +250,11 @@ case 1:
         rlutil::locate (35, 6);
         cout <<"Es el turno de "<<nombre2<<"!";
         rlutil::locate (35, 7);
-        cout <<"Tirar Dados? S/N"<<endl;
+        cout <<"Tirar Dados? (S/N): ";
         rlutil::locate (42, 9);
         cin >>respuesta;
+        rlutil::locate (42, 9);
+        cout <<"  ";
         rlutil::hidecursor();
         respuesta =  toupper(respuesta);
             if (respuesta == 'S'){
@@ -364,13 +396,15 @@ void comienzo_del_juego (char nombre1[], char nombre2[], bool& primer_jugador, i
                                 rlutil::locate  (35, 12);
                                 cout <<"LANZAMIENTO # "<<cont_lanzamientos+1;
                                 rlutil::locate(35, 13);
-                                cout <<"Tirar Dados?  S/N";
+                                cout <<"Tirar Dados? (S/N): ";
                                 rlutil::locate (10, 25);
                                 cout<<"------------------------------------------------------------------------";
                                 rlutil::locate (59, 26);
                                 cout <<"Responda 'Q' para salir";
-                                rlutil::locate (54, 13);
+                                rlutil::locate (55, 13);
                                 cin >>respuesta;
+                                rlutil::locate (35, 13);
+                                cout <<"                      ";
                                respuesta = toupper(respuesta);
                                     if(respuesta == 'S'){
                                         empezar_lanzamiento(trufas_acumuladas, trufas_acumuladas2, bandera_turno, bandera_3dados, trufas_ronda, cont_lanzamientos, cont_lanzamientos2, cont_turnos, oinks1, oinks2);
@@ -378,8 +412,9 @@ void comienzo_del_juego (char nombre1[], char nombre2[], bool& primer_jugador, i
                                         break;
                                 }
                                     else if (respuesta == 'N'){
-                                        rlutil::locate ( 10, 15);
-                                        cout <<"está seguro?...se acumularán las trufas de la ronda :  S/N ";
+                                        rlutil::locate ( 15, 15);
+                                        cout <<"está seguro?...se acumularán las trufas de la ronda (S/N): ";
+                                        rlutil::locate (74, 15);
                                         cin >>respuesta;
                                         respuesta = toupper(respuesta);
                                         if (respuesta == 'S'){
@@ -421,22 +456,24 @@ void comienzo_del_juego (char nombre1[], char nombre2[], bool& primer_jugador, i
                                 rlutil::locate  (35, 12);
                                 cout <<"LANZAMIENTO # "<<cont_lanzamientos2+1;
                                 rlutil::locate(35, 13);
-                                cout <<"Tirar Dados?  S/N";
+                                cout <<"Tirar Dados? (S/N): ";
                                 rlutil::locate (10, 25);
                                 cout<<"------------------------------------------------------------------------";
                                 rlutil::locate (59, 26);
                                 cout <<"Responda 'Q' para salir";
-                                rlutil::locate (54, 13);
-                                rlutil::locate (54, 13);
+                                rlutil::locate (55, 13);
                                 cin >>respuesta;
+                                rlutil::locate (35, 13);
+                                cout <<"                      ";
                                respuesta = toupper(respuesta);
                                     if (respuesta =='S'){
                                         empezar_lanzamiento(trufas_acumuladas, trufas_acumuladas2, bandera_turno, bandera_3dados, trufas_ronda, cont_lanzamientos, cont_lanzamientos2, cont_turnos, oinks1, oinks2);
                                         borrar_pantalla();
                                 }
                                     else if (respuesta == 'N'){
-                                        rlutil::locate ( 10, 15);
-                                        cout <<"está seguro? Se acumularán las trufas de la ronda : S/N";
+                                        rlutil::locate (15, 15);
+                                        cout <<"está seguro? Se acumularán las trufas de la ronda (S/N): ";
+                                        rlutil::locate (74, 15);
                                         cin >>respuesta;
                                         respuesta = toupper(respuesta);
                                         if (respuesta == 'S'){
@@ -472,7 +509,7 @@ int dados_jugador[3] = {};
 
 //En ésta parte pregunto si las trufas acumuladas son menores a 50,
 //esto condiciona la cantidad de dados que se van a utilizar
-if (puntaje1 >= 50 || puntaje2 >= 50){
+if (puntaje1 >= 50 && puntaje2 >= 50){
     bandera_3dados = true;
 }
 ////////////////Lanzamiento de dados ///////////////////////////
@@ -594,7 +631,7 @@ if (puntaje1 >= 50 || puntaje2 >= 50){
                                     break;
                                  }
                                 else if (dados_jugador [0] == dados_jugador [1] && dados_jugador [0] == dados_jugador [2]){
-                                    rlutil::locate (10, 21);
+                                    rlutil::locate (14, 21);
                                     cout <<"Hiciste un OINK! Duplica los dados y lanza nuevamente!";
                                     trufas_ronda += suma*2;
                                     cont_lanzamientos ++;
@@ -719,7 +756,7 @@ if (puntaje1 >= 50 || puntaje2 >= 50){
                                     empezar_lanzamiento(puntaje1, puntaje2, jugador, bandera_3dados, trufas_ronda, cont_lanzamientos, cont_lanzamientos2, cont_turnos, oinks1, oinks2);
 
                                 }
-                                else if (dados_jugador [0] != dados_jugador [1] || dados_jugador [0] == dados_jugador [2]){
+                                else if (dados_jugador [0] != dados_jugador [1] || dados_jugador [0] != dados_jugador [2]){
                                     rlutil::locate (34, 21);
                                     cout << "Hiciste "<<suma<< " trufas!";
                                     trufas_ronda += suma;
@@ -849,7 +886,6 @@ void guardar_ganador(char n_puntajemax [], int& puntajemax, int ganador [], char
         }
         puntajemax = ganador [1];
     }
-rlutil::getkey();
 }
 
 

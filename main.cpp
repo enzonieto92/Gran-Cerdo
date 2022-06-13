@@ -37,6 +37,7 @@ int pv_1 = 0, pv_2 = 0;
 rlutil::hidecursor();
     do {
             borrar_pantalla();
+            rlutil::setColor(rlutil::WHITE);
             rlutil::locate (40, 5);
             cout <<"GRAN CERDO";
             rlutil::locate (40, 6);
